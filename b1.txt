@@ -1,0 +1,102 @@
+BAO CAO DEBUG - HE THONG KIEM DINH AN TOAN KHO
+
+1. PHAN TICH HAI LOI LOGIC
+
+Loi 1: Sai toan tu kiem tra nhiet do
+
+Ma cu:
+
+if (item.temp_celsius < -18.0 && item.temp_celsius > 5.0)
+
+Nguyen nhan:
+Toan tu && yeu cau ca hai dieu kien cung dung. Tuy nhien, mot gia tri khong the vua nho hon -18 va vua lon hon 5. Vi vay, dieu kien nay luon sai.
+
+Cach sua:
+
+if (item.temp_celsius < -18.0 || item.temp_celsius > 5.0)
+
+Toan tu || cho phep tu choi neu nhiet do nam ngoai khoang tu -18 den 5 do C. Hai gia tri -18 va 5 van duoc chap nhan.
+
+Loi 2: Chi kiem tra trong luong kien hang
+
+Ma cu:
+
+if (item.weight_kg > MAX_SHELF_WEIGHT)
+
+Nguyen nhan:
+Dieu kien chi kiem tra kien hang moi co nang hon 500 kg hay khong, bo qua tai trong hang hoa dang co tren ke.
+
+Cach sua:
+
+if (shelf.current_weight_kg + item.weight_kg > MAX_SHELF_WEIGHT)
+
+Dieu kien moi kiem tra tong tai trong sau khi xep them kien hang. Neu tong vuot 500 kg, he thong tu choi nhap kho.
+
+2. TRACE LUONG CHAY CUA MA CU
+
+Du lieu:
+- Tai trong hien tai: 400 kg
+- Trong luong kien moi: 150 kg
+- Nhiet do bao quan: 12 do C
+- Ke thuoc kho lanh.
+
+Buoc 1: Kiem tra nhiet do.
+- 12 < -18: Sai.
+- 12 > 5: Sai.
+- Hai dieu kien noi bang && nen ket qua Sai.
+- Chuong trinh khong tu choi kien hang.
+
+Buoc 2: Kiem tra tai trong.
+- 150 > 500: Sai.
+- Chuong trinh bo qua loi qua tai.
+
+Buoc 3: Ham tra ve 1, khien he thong bao DUYET nhap kho.
+
+Ket luan: Ma cu chap nhan sai do ca dieu kien nhiet do va dieu kien tai trong deu khong phat hien vi pham.
+
+3. BANG TEST CASE
+
+Test case 1: Qua tai ke kho
+Input:
+- Tai trong hien tai: 400 kg
+- Kien hang moi: 150 kg
+- Kho thuong
+- Tong sau khi xep: 550 kg
+
+Ket qua sai hien tai:
+Chuong trinh duyet nhap kho vi 150 khong lon hon 500.
+
+Ket qua dung mong doi:
+Tu choi nhap kho vi 550 kg vuot gioi han 500 kg.
+
+Test case 2: Nhiet do khong hop le
+Input:
+- Tai trong hien tai: 100 kg
+- Kien hang moi: 50 kg
+- Kho lanh
+- Nhiet do: 12 do C
+
+Ket qua sai hien tai:
+Chuong trinh duyet nhap kho vi dieu kien nhiet do dung && luon sai.
+
+Ket qua dung mong doi:
+Tu choi nhap kho vi 12 do C nam ngoai khoang [-18, 5].
+
+Test case 3: Du dieu kien nhap kho
+Input:
+- Tai trong hien tai: 200 kg
+- Kien hang moi: 100 kg
+- Kho lanh
+- Nhiet do: 2 do C
+- Tong sau khi xep: 300 kg
+
+Ket qua dung mong doi:
+Duyet nhap kho vi nhiet do hop le va tong tai trong khong vuot 500 kg.
+
+4. KET LUAN
+
+Da sua hai loi logic:
+- Doi && thanh || trong dieu kien kiem tra nhiet do.
+- Kiem tra tong tai trong hien tai cong trong luong kien hang moi.
+
+Chuong trinh sau khi sua tu choi cac truong hop vi pham quy tac an toan va chap nhan cac truong hop hop le, bao gom ca nhiet do dung tai hai moc -18 do C va 5 do C.
